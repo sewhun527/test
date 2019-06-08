@@ -1,0 +1,799 @@
+<metadata__catalog__entry>
+  <version>5.2.0.0</version>
+  <types class="tree-map">
+    <entry>
+      <org.mule.common.metadata.DefaultMetaDataKey>
+        <id>GetCountries</id>
+        <displayName>GetCountries</displayName>
+        <category>DEFAULT</category>
+        <metaDataKeyPropertiesManager>
+          <properties>
+            <org.mule.common.metadata.key.property.dsql.DsqlFromMetaDataKeyProperty/>
+          </properties>
+        </metaDataKeyPropertiesManager>
+      </org.mule.common.metadata.DefaultMetaDataKey>
+      <org.mule.common.metadata.DefaultXmlMetaDataModel>
+        <dataType>XML</dataType>
+        <metaDataModelPropertiesManager>
+          <properties>
+            <org.mule.common.metadata.property.TextBasedExampleMetaDataModelProperty/>
+            <org.mule.common.metadata.property.xml.SchemaTypeMetaDataProperty/>
+            <org.mule.common.metadata.property.StructureIdentifierMetaDataModelProperty>
+              <metaDataKey class="org.mule.common.metadata.DefaultMetaDataKey">
+                <id>GetCountries</id>
+                <displayName>GetCountries</displayName>
+                <category>DEFAULT</category>
+                <metaDataKeyPropertiesManager>
+                  <properties>
+                    <org.mule.common.metadata.key.property.dsql.DsqlFromMetaDataKeyProperty/>
+                  </properties>
+                </metaDataKeyPropertiesManager>
+              </metaDataKey>
+              <derivedStructure>false</derivedStructure>
+              <generatedStructure>false</generatedStructure>
+            </org.mule.common.metadata.property.StructureIdentifierMetaDataModelProperty>
+          </properties>
+        </metaDataModelPropertiesManager>
+        <fields/>
+        <rootElement>
+          <namespaceURI>http://www.webserviceX.NET</namespaceURI>
+          <localPart>GetCountries</localPart>
+          <prefix>ns0</prefix>
+        </rootElement>
+        <schemas class="org.mule.common.metadata.StringBasedSchemaProvider">
+          <schemas>
+            <string>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;s:schema xmlns:s=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:http=&quot;http://schemas.xmlsoap.org/wsdl/http/&quot; xmlns:mime=&quot;http://schemas.xmlsoap.org/wsdl/mime/&quot; xmlns:soap=&quot;http://schemas.xmlsoap.org/wsdl/soap/&quot; xmlns:soap12=&quot;http://schemas.xmlsoap.org/wsdl/soap12/&quot; xmlns:soapenc=&quot;http://schemas.xmlsoap.org/soap/encoding/&quot; xmlns:tm=&quot;http://microsoft.com/wsdl/mime/textMatching/&quot; xmlns:tns=&quot;http://www.webserviceX.NET&quot; xmlns:wsdl=&quot;http://schemas.xmlsoap.org/wsdl/&quot; elementFormDefault=&quot;qualified&quot; targetNamespace=&quot;http://www.webserviceX.NET&quot;&gt;&#xd;
+      &lt;s:element name=&quot;GetCountryByCountryCode&quot;&gt;&#xd;
+        &lt;s:complexType&gt;&#xd;
+          &lt;s:sequence&gt;&#xd;
+            &lt;s:element maxOccurs=&quot;1&quot; minOccurs=&quot;0&quot; name=&quot;CountryCode&quot; type=&quot;s:string&quot;/&gt;&#xd;
+          &lt;/s:sequence&gt;&#xd;
+        &lt;/s:complexType&gt;&#xd;
+      &lt;/s:element&gt;&#xd;
+      &lt;s:element name=&quot;GetCountryByCountryCodeResponse&quot;&gt;&#xd;
+        &lt;s:complexType&gt;&#xd;
+          &lt;s:sequence&gt;&#xd;
+            &lt;s:element maxOccurs=&quot;1&quot; minOccurs=&quot;0&quot; name=&quot;GetCountryByCountryCodeResult&quot; type=&quot;s:string&quot;/&gt;&#xd;
+          &lt;/s:sequence&gt;&#xd;
+        &lt;/s:complexType&gt;&#xd;
+      &lt;/s:element&gt;&#xd;
+      &lt;s:element name=&quot;GetISD&quot;&gt;&#xd;
+        &lt;s:complexType&gt;&#xd;
+          &lt;s:sequence&gt;&#xd;
+            &lt;s:element maxOccurs=&quot;1&quot; minOccurs=&quot;0&quot; name=&quot;CountryName&quot; type=&quot;s:string&quot;/&gt;&#xd;
+          &lt;/s:sequence&gt;&#xd;
+        &lt;/s:complexType&gt;&#xd;
+      &lt;/s:element&gt;&#xd;
+      &lt;s:element name=&quot;GetISDResponse&quot;&gt;&#xd;
+        &lt;s:complexType&gt;&#xd;
+          &lt;s:sequence&gt;&#xd;
+            &lt;s:element maxOccurs=&quot;1&quot; minOccurs=&quot;0&quot; name=&quot;GetISDResult&quot; type=&quot;s:string&quot;/&gt;&#xd;
+          &lt;/s:sequence&gt;&#xd;
+        &lt;/s:complexType&gt;&#xd;
+      &lt;/s:element&gt;&#xd;
+      &lt;s:element name=&quot;GetCountries&quot;&gt;&#xd;
+        &lt;s:complexType/&gt;&#xd;
+      &lt;/s:element&gt;&#xd;
+      &lt;s:element name=&quot;GetCountriesResponse&quot;&gt;&#xd;
+        &lt;s:complexType&gt;&#xd;
+          &lt;s:sequence&gt;&#xd;
+            &lt;s:element maxOccurs=&quot;1&quot; minOccurs=&quot;0&quot; name=&quot;GetCountriesResult&quot; type=&quot;s:string&quot;/&gt;&#xd;
+          &lt;/s:sequence&gt;&#xd;
+        &lt;/s:complexType&gt;&#xd;
+      &lt;/s:element&gt;&#xd;
+      &lt;s:element name=&quot;GetCurrencyCodeByCurrencyName&quot;&gt;&#xd;
+        &lt;s:complexType&gt;&#xd;
+          &lt;s:sequence&gt;&#xd;
+            &lt;s:element maxOccurs=&quot;1&quot; minOccurs=&quot;0&quot; name=&quot;CurrencyName&quot; type=&quot;s:string&quot;/&gt;&#xd;
+          &lt;/s:sequence&gt;&#xd;
+        &lt;/s:complexType&gt;&#xd;
+      &lt;/s:element&gt;&#xd;
+      &lt;s:element name=&quot;GetCurrencyCodeByCurrencyNameResponse&quot;&gt;&#xd;
+        &lt;s:complexType&gt;&#xd;
+          &lt;s:sequence&gt;&#xd;
+            &lt;s:element maxOccurs=&quot;1&quot; minOccurs=&quot;0&quot; name=&quot;GetCurrencyCodeByCurrencyNameResult&quot; type=&quot;s:string&quot;/&gt;&#xd;
+          &lt;/s:sequence&gt;&#xd;
+        &lt;/s:complexType&gt;&#xd;
+      &lt;/s:element&gt;&#xd;
+      &lt;s:element name=&quot;GetISOCountryCodeByCountyName&quot;&gt;&#xd;
+        &lt;s:complexType&gt;&#xd;
+          &lt;s:sequence&gt;&#xd;
+            &lt;s:element maxOccurs=&quot;1&quot; minOccurs=&quot;0&quot; name=&quot;CountryName&quot; type=&quot;s:string&quot;/&gt;&#xd;
+          &lt;/s:sequence&gt;&#xd;
+        &lt;/s:complexType&gt;&#xd;
+      &lt;/s:element&gt;&#xd;
+      &lt;s:element name=&quot;GetISOCountryCodeByCountyNameResponse&quot;&gt;&#xd;
+        &lt;s:complexType&gt;&#xd;
+          &lt;s:sequence&gt;&#xd;
+            &lt;s:element maxOccurs=&quot;1&quot; minOccurs=&quot;0&quot; name=&quot;GetISOCountryCodeByCountyNameResult&quot; type=&quot;s:string&quot;/&gt;&#xd;
+          &lt;/s:sequence&gt;&#xd;
+        &lt;/s:complexType&gt;&#xd;
+      &lt;/s:element&gt;&#xd;
+      &lt;s:element name=&quot;GetCurrencyCode&quot;&gt;&#xd;
+        &lt;s:complexType/&gt;&#xd;
+      &lt;/s:element&gt;&#xd;
+      &lt;s:element name=&quot;GetCurrencyCodeResponse&quot;&gt;&#xd;
+        &lt;s:complexType&gt;&#xd;
+          &lt;s:sequence&gt;&#xd;
+            &lt;s:element maxOccurs=&quot;1&quot; minOccurs=&quot;0&quot; name=&quot;GetCurrencyCodeResult&quot; type=&quot;s:string&quot;/&gt;&#xd;
+          &lt;/s:sequence&gt;&#xd;
+        &lt;/s:complexType&gt;&#xd;
+      &lt;/s:element&gt;&#xd;
+      &lt;s:element name=&quot;GetCountryByCurrencyCode&quot;&gt;&#xd;
+        &lt;s:complexType&gt;&#xd;
+          &lt;s:sequence&gt;&#xd;
+            &lt;s:element maxOccurs=&quot;1&quot; minOccurs=&quot;0&quot; name=&quot;CurrencyCode&quot; type=&quot;s:string&quot;/&gt;&#xd;
+          &lt;/s:sequence&gt;&#xd;
+        &lt;/s:complexType&gt;&#xd;
+      &lt;/s:element&gt;&#xd;
+      &lt;s:element name=&quot;GetCountryByCurrencyCodeResponse&quot;&gt;&#xd;
+        &lt;s:complexType&gt;&#xd;
+          &lt;s:sequence&gt;&#xd;
+            &lt;s:element maxOccurs=&quot;1&quot; minOccurs=&quot;0&quot; name=&quot;GetCountryByCurrencyCodeResult&quot; type=&quot;s:string&quot;/&gt;&#xd;
+          &lt;/s:sequence&gt;&#xd;
+        &lt;/s:complexType&gt;&#xd;
+      &lt;/s:element&gt;&#xd;
+      &lt;s:element name=&quot;GetCurrencies&quot;&gt;&#xd;
+        &lt;s:complexType/&gt;&#xd;
+      &lt;/s:element&gt;&#xd;
+      &lt;s:element name=&quot;GetCurrenciesResponse&quot;&gt;&#xd;
+        &lt;s:complexType&gt;&#xd;
+          &lt;s:sequence&gt;&#xd;
+            &lt;s:element maxOccurs=&quot;1&quot; minOccurs=&quot;0&quot; name=&quot;GetCurrenciesResult&quot; type=&quot;s:string&quot;/&gt;&#xd;
+          &lt;/s:sequence&gt;&#xd;
+        &lt;/s:complexType&gt;&#xd;
+      &lt;/s:element&gt;&#xd;
+      &lt;s:element name=&quot;GetCurrencyByCountry&quot;&gt;&#xd;
+        &lt;s:complexType&gt;&#xd;
+          &lt;s:sequence&gt;&#xd;
+            &lt;s:element maxOccurs=&quot;1&quot; minOccurs=&quot;0&quot; name=&quot;CountryName&quot; type=&quot;s:string&quot;/&gt;&#xd;
+          &lt;/s:sequence&gt;&#xd;
+        &lt;/s:complexType&gt;&#xd;
+      &lt;/s:element&gt;&#xd;
+      &lt;s:element name=&quot;GetCurrencyByCountryResponse&quot;&gt;&#xd;
+        &lt;s:complexType&gt;&#xd;
+          &lt;s:sequence&gt;&#xd;
+            &lt;s:element maxOccurs=&quot;1&quot; minOccurs=&quot;0&quot; name=&quot;GetCurrencyByCountryResult&quot; type=&quot;s:string&quot;/&gt;&#xd;
+          &lt;/s:sequence&gt;&#xd;
+        &lt;/s:complexType&gt;&#xd;
+      &lt;/s:element&gt;&#xd;
+      &lt;s:element name=&quot;GetGMTbyCountry&quot;&gt;&#xd;
+        &lt;s:complexType&gt;&#xd;
+          &lt;s:sequence&gt;&#xd;
+            &lt;s:element maxOccurs=&quot;1&quot; minOccurs=&quot;0&quot; name=&quot;CountryName&quot; type=&quot;s:string&quot;/&gt;&#xd;
+          &lt;/s:sequence&gt;&#xd;
+        &lt;/s:complexType&gt;&#xd;
+      &lt;/s:element&gt;&#xd;
+      &lt;s:element name=&quot;GetGMTbyCountryResponse&quot;&gt;&#xd;
+        &lt;s:complexType&gt;&#xd;
+          &lt;s:sequence&gt;&#xd;
+            &lt;s:element maxOccurs=&quot;1&quot; minOccurs=&quot;0&quot; name=&quot;GetGMTbyCountryResult&quot; type=&quot;s:string&quot;/&gt;&#xd;
+          &lt;/s:sequence&gt;&#xd;
+        &lt;/s:complexType&gt;&#xd;
+      &lt;/s:element&gt;&#xd;
+      &lt;s:element name=&quot;string&quot; nillable=&quot;true&quot; type=&quot;s:string&quot;/&gt;&#xd;
+    &lt;/s:schema&gt;</string>
+          </schemas>
+          <encoding>windows-1252</encoding>
+          <baseUri>file:/C:/AnypointStudio/http:/www.swi-prolog.org/pack/file_details/wsdl/examples/country.wsdl</baseUri>
+        </schemas>
+        <namespaceManager>
+          <namespacePrefix class="tree-map">
+            <entry>
+              <string>http://www.webserviceX.NET</string>
+              <string>ns0</string>
+            </entry>
+          </namespacePrefix>
+        </namespaceManager>
+      </org.mule.common.metadata.DefaultXmlMetaDataModel>
+    </entry>
+    <entry>
+      <org.mule.common.metadata.DefaultMetaDataKey>
+        <id>GetCountriesResponse</id>
+        <displayName>GetCountriesResponse</displayName>
+        <category>DEFAULT</category>
+        <metaDataKeyPropertiesManager>
+          <properties>
+            <org.mule.common.metadata.key.property.dsql.DsqlFromMetaDataKeyProperty/>
+          </properties>
+        </metaDataKeyPropertiesManager>
+      </org.mule.common.metadata.DefaultMetaDataKey>
+      <org.mule.common.metadata.DefaultXmlMetaDataModel>
+        <dataType>XML</dataType>
+        <metaDataModelPropertiesManager>
+          <properties>
+            <org.mule.common.metadata.property.TextBasedExampleMetaDataModelProperty/>
+            <org.mule.common.metadata.property.xml.SchemaTypeMetaDataProperty/>
+            <org.mule.common.metadata.property.StructureIdentifierMetaDataModelProperty>
+              <metaDataKey class="org.mule.common.metadata.DefaultMetaDataKey">
+                <id>GetCountriesResponse</id>
+                <displayName>GetCountriesResponse</displayName>
+                <category>DEFAULT</category>
+                <metaDataKeyPropertiesManager>
+                  <properties>
+                    <org.mule.common.metadata.key.property.dsql.DsqlFromMetaDataKeyProperty/>
+                  </properties>
+                </metaDataKeyPropertiesManager>
+              </metaDataKey>
+              <derivedStructure>false</derivedStructure>
+              <generatedStructure>false</generatedStructure>
+            </org.mule.common.metadata.property.StructureIdentifierMetaDataModelProperty>
+          </properties>
+        </metaDataModelPropertiesManager>
+        <fields>
+          <org.mule.common.metadata.DefaultMetaDataField>
+            <name>ns0:GetCountriesResult</name>
+            <model class="org.mule.common.metadata.DefaultSimpleMetaDataModel">
+              <dataType>STRING</dataType>
+              <metaDataModelPropertiesManager>
+                <properties>
+                  <org.mule.common.metadata.property.xml.SchemaTypeMetaDataProperty>
+                    <typeQName>
+                      <namespaceURI>http://www.w3.org/2001/XMLSchema</namespaceURI>
+                      <localPart>string</localPart>
+                      <prefix></prefix>
+                    </typeQName>
+                  </org.mule.common.metadata.property.xml.SchemaTypeMetaDataProperty>
+                </properties>
+              </metaDataModelPropertiesManager>
+            </model>
+            <accessType>READ_WRITE</accessType>
+            <metaDataFieldPropertyManager>
+              <properties>
+                <org.mule.common.metadata.property.QNameMetaDataProperty>
+                  <name>
+                    <namespaceURI>http://www.webserviceX.NET</namespaceURI>
+                    <localPart>GetCountriesResult</localPart>
+                    <prefix>ns0</prefix>
+                  </name>
+                </org.mule.common.metadata.property.QNameMetaDataProperty>
+              </properties>
+            </metaDataFieldPropertyManager>
+          </org.mule.common.metadata.DefaultMetaDataField>
+        </fields>
+        <rootElement>
+          <namespaceURI>http://www.webserviceX.NET</namespaceURI>
+          <localPart>GetCountriesResponse</localPart>
+          <prefix>ns0</prefix>
+        </rootElement>
+        <schemas class="org.mule.common.metadata.StringBasedSchemaProvider">
+          <schemas>
+            <string>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;s:schema xmlns:s=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:http=&quot;http://schemas.xmlsoap.org/wsdl/http/&quot; xmlns:mime=&quot;http://schemas.xmlsoap.org/wsdl/mime/&quot; xmlns:soap=&quot;http://schemas.xmlsoap.org/wsdl/soap/&quot; xmlns:soap12=&quot;http://schemas.xmlsoap.org/wsdl/soap12/&quot; xmlns:soapenc=&quot;http://schemas.xmlsoap.org/soap/encoding/&quot; xmlns:tm=&quot;http://microsoft.com/wsdl/mime/textMatching/&quot; xmlns:tns=&quot;http://www.webserviceX.NET&quot; xmlns:wsdl=&quot;http://schemas.xmlsoap.org/wsdl/&quot; elementFormDefault=&quot;qualified&quot; targetNamespace=&quot;http://www.webserviceX.NET&quot;&gt;&#xd;
+      &lt;s:element name=&quot;GetCountryByCountryCode&quot;&gt;&#xd;
+        &lt;s:complexType&gt;&#xd;
+          &lt;s:sequence&gt;&#xd;
+            &lt;s:element maxOccurs=&quot;1&quot; minOccurs=&quot;0&quot; name=&quot;CountryCode&quot; type=&quot;s:string&quot;/&gt;&#xd;
+          &lt;/s:sequence&gt;&#xd;
+        &lt;/s:complexType&gt;&#xd;
+      &lt;/s:element&gt;&#xd;
+      &lt;s:element name=&quot;GetCountryByCountryCodeResponse&quot;&gt;&#xd;
+        &lt;s:complexType&gt;&#xd;
+          &lt;s:sequence&gt;&#xd;
+            &lt;s:element maxOccurs=&quot;1&quot; minOccurs=&quot;0&quot; name=&quot;GetCountryByCountryCodeResult&quot; type=&quot;s:string&quot;/&gt;&#xd;
+          &lt;/s:sequence&gt;&#xd;
+        &lt;/s:complexType&gt;&#xd;
+      &lt;/s:element&gt;&#xd;
+      &lt;s:element name=&quot;GetISD&quot;&gt;&#xd;
+        &lt;s:complexType&gt;&#xd;
+          &lt;s:sequence&gt;&#xd;
+            &lt;s:element maxOccurs=&quot;1&quot; minOccurs=&quot;0&quot; name=&quot;CountryName&quot; type=&quot;s:string&quot;/&gt;&#xd;
+          &lt;/s:sequence&gt;&#xd;
+        &lt;/s:complexType&gt;&#xd;
+      &lt;/s:element&gt;&#xd;
+      &lt;s:element name=&quot;GetISDResponse&quot;&gt;&#xd;
+        &lt;s:complexType&gt;&#xd;
+          &lt;s:sequence&gt;&#xd;
+            &lt;s:element maxOccurs=&quot;1&quot; minOccurs=&quot;0&quot; name=&quot;GetISDResult&quot; type=&quot;s:string&quot;/&gt;&#xd;
+          &lt;/s:sequence&gt;&#xd;
+        &lt;/s:complexType&gt;&#xd;
+      &lt;/s:element&gt;&#xd;
+      &lt;s:element name=&quot;GetCountries&quot;&gt;&#xd;
+        &lt;s:complexType/&gt;&#xd;
+      &lt;/s:element&gt;&#xd;
+      &lt;s:element name=&quot;GetCountriesResponse&quot;&gt;&#xd;
+        &lt;s:complexType&gt;&#xd;
+          &lt;s:sequence&gt;&#xd;
+            &lt;s:element maxOccurs=&quot;1&quot; minOccurs=&quot;0&quot; name=&quot;GetCountriesResult&quot; type=&quot;s:string&quot;/&gt;&#xd;
+          &lt;/s:sequence&gt;&#xd;
+        &lt;/s:complexType&gt;&#xd;
+      &lt;/s:element&gt;&#xd;
+      &lt;s:element name=&quot;GetCurrencyCodeByCurrencyName&quot;&gt;&#xd;
+        &lt;s:complexType&gt;&#xd;
+          &lt;s:sequence&gt;&#xd;
+            &lt;s:element maxOccurs=&quot;1&quot; minOccurs=&quot;0&quot; name=&quot;CurrencyName&quot; type=&quot;s:string&quot;/&gt;&#xd;
+          &lt;/s:sequence&gt;&#xd;
+        &lt;/s:complexType&gt;&#xd;
+      &lt;/s:element&gt;&#xd;
+      &lt;s:element name=&quot;GetCurrencyCodeByCurrencyNameResponse&quot;&gt;&#xd;
+        &lt;s:complexType&gt;&#xd;
+          &lt;s:sequence&gt;&#xd;
+            &lt;s:element maxOccurs=&quot;1&quot; minOccurs=&quot;0&quot; name=&quot;GetCurrencyCodeByCurrencyNameResult&quot; type=&quot;s:string&quot;/&gt;&#xd;
+          &lt;/s:sequence&gt;&#xd;
+        &lt;/s:complexType&gt;&#xd;
+      &lt;/s:element&gt;&#xd;
+      &lt;s:element name=&quot;GetISOCountryCodeByCountyName&quot;&gt;&#xd;
+        &lt;s:complexType&gt;&#xd;
+          &lt;s:sequence&gt;&#xd;
+            &lt;s:element maxOccurs=&quot;1&quot; minOccurs=&quot;0&quot; name=&quot;CountryName&quot; type=&quot;s:string&quot;/&gt;&#xd;
+          &lt;/s:sequence&gt;&#xd;
+        &lt;/s:complexType&gt;&#xd;
+      &lt;/s:element&gt;&#xd;
+      &lt;s:element name=&quot;GetISOCountryCodeByCountyNameResponse&quot;&gt;&#xd;
+        &lt;s:complexType&gt;&#xd;
+          &lt;s:sequence&gt;&#xd;
+            &lt;s:element maxOccurs=&quot;1&quot; minOccurs=&quot;0&quot; name=&quot;GetISOCountryCodeByCountyNameResult&quot; type=&quot;s:string&quot;/&gt;&#xd;
+          &lt;/s:sequence&gt;&#xd;
+        &lt;/s:complexType&gt;&#xd;
+      &lt;/s:element&gt;&#xd;
+      &lt;s:element name=&quot;GetCurrencyCode&quot;&gt;&#xd;
+        &lt;s:complexType/&gt;&#xd;
+      &lt;/s:element&gt;&#xd;
+      &lt;s:element name=&quot;GetCurrencyCodeResponse&quot;&gt;&#xd;
+        &lt;s:complexType&gt;&#xd;
+          &lt;s:sequence&gt;&#xd;
+            &lt;s:element maxOccurs=&quot;1&quot; minOccurs=&quot;0&quot; name=&quot;GetCurrencyCodeResult&quot; type=&quot;s:string&quot;/&gt;&#xd;
+          &lt;/s:sequence&gt;&#xd;
+        &lt;/s:complexType&gt;&#xd;
+      &lt;/s:element&gt;&#xd;
+      &lt;s:element name=&quot;GetCountryByCurrencyCode&quot;&gt;&#xd;
+        &lt;s:complexType&gt;&#xd;
+          &lt;s:sequence&gt;&#xd;
+            &lt;s:element maxOccurs=&quot;1&quot; minOccurs=&quot;0&quot; name=&quot;CurrencyCode&quot; type=&quot;s:string&quot;/&gt;&#xd;
+          &lt;/s:sequence&gt;&#xd;
+        &lt;/s:complexType&gt;&#xd;
+      &lt;/s:element&gt;&#xd;
+      &lt;s:element name=&quot;GetCountryByCurrencyCodeResponse&quot;&gt;&#xd;
+        &lt;s:complexType&gt;&#xd;
+          &lt;s:sequence&gt;&#xd;
+            &lt;s:element maxOccurs=&quot;1&quot; minOccurs=&quot;0&quot; name=&quot;GetCountryByCurrencyCodeResult&quot; type=&quot;s:string&quot;/&gt;&#xd;
+          &lt;/s:sequence&gt;&#xd;
+        &lt;/s:complexType&gt;&#xd;
+      &lt;/s:element&gt;&#xd;
+      &lt;s:element name=&quot;GetCurrencies&quot;&gt;&#xd;
+        &lt;s:complexType/&gt;&#xd;
+      &lt;/s:element&gt;&#xd;
+      &lt;s:element name=&quot;GetCurrenciesResponse&quot;&gt;&#xd;
+        &lt;s:complexType&gt;&#xd;
+          &lt;s:sequence&gt;&#xd;
+            &lt;s:element maxOccurs=&quot;1&quot; minOccurs=&quot;0&quot; name=&quot;GetCurrenciesResult&quot; type=&quot;s:string&quot;/&gt;&#xd;
+          &lt;/s:sequence&gt;&#xd;
+        &lt;/s:complexType&gt;&#xd;
+      &lt;/s:element&gt;&#xd;
+      &lt;s:element name=&quot;GetCurrencyByCountry&quot;&gt;&#xd;
+        &lt;s:complexType&gt;&#xd;
+          &lt;s:sequence&gt;&#xd;
+            &lt;s:element maxOccurs=&quot;1&quot; minOccurs=&quot;0&quot; name=&quot;CountryName&quot; type=&quot;s:string&quot;/&gt;&#xd;
+          &lt;/s:sequence&gt;&#xd;
+        &lt;/s:complexType&gt;&#xd;
+      &lt;/s:element&gt;&#xd;
+      &lt;s:element name=&quot;GetCurrencyByCountryResponse&quot;&gt;&#xd;
+        &lt;s:complexType&gt;&#xd;
+          &lt;s:sequence&gt;&#xd;
+            &lt;s:element maxOccurs=&quot;1&quot; minOccurs=&quot;0&quot; name=&quot;GetCurrencyByCountryResult&quot; type=&quot;s:string&quot;/&gt;&#xd;
+          &lt;/s:sequence&gt;&#xd;
+        &lt;/s:complexType&gt;&#xd;
+      &lt;/s:element&gt;&#xd;
+      &lt;s:element name=&quot;GetGMTbyCountry&quot;&gt;&#xd;
+        &lt;s:complexType&gt;&#xd;
+          &lt;s:sequence&gt;&#xd;
+            &lt;s:element maxOccurs=&quot;1&quot; minOccurs=&quot;0&quot; name=&quot;CountryName&quot; type=&quot;s:string&quot;/&gt;&#xd;
+          &lt;/s:sequence&gt;&#xd;
+        &lt;/s:complexType&gt;&#xd;
+      &lt;/s:element&gt;&#xd;
+      &lt;s:element name=&quot;GetGMTbyCountryResponse&quot;&gt;&#xd;
+        &lt;s:complexType&gt;&#xd;
+          &lt;s:sequence&gt;&#xd;
+            &lt;s:element maxOccurs=&quot;1&quot; minOccurs=&quot;0&quot; name=&quot;GetGMTbyCountryResult&quot; type=&quot;s:string&quot;/&gt;&#xd;
+          &lt;/s:sequence&gt;&#xd;
+        &lt;/s:complexType&gt;&#xd;
+      &lt;/s:element&gt;&#xd;
+      &lt;s:element name=&quot;string&quot; nillable=&quot;true&quot; type=&quot;s:string&quot;/&gt;&#xd;
+    &lt;/s:schema&gt;</string>
+          </schemas>
+          <encoding reference="../../../../entry/org.mule.common.metadata.DefaultXmlMetaDataModel/schemas/encoding"/>
+          <baseUri>file:/C:/AnypointStudio/http:/www.swi-prolog.org/pack/file_details/wsdl/examples/country.wsdl</baseUri>
+        </schemas>
+        <namespaceManager>
+          <namespacePrefix class="tree-map">
+            <entry>
+              <string>http://www.webserviceX.NET</string>
+              <string>ns0</string>
+            </entry>
+          </namespacePrefix>
+        </namespaceManager>
+      </org.mule.common.metadata.DefaultXmlMetaDataModel>
+    </entry>
+    <entry>
+      <org.mule.common.metadata.DefaultMetaDataKey>
+        <id>getEmployeeDetails</id>
+        <displayName>getEmployeeDetails</displayName>
+        <category>DEFAULT</category>
+        <metaDataKeyPropertiesManager>
+          <properties>
+            <org.mule.common.metadata.key.property.dsql.DsqlFromMetaDataKeyProperty/>
+          </properties>
+        </metaDataKeyPropertiesManager>
+      </org.mule.common.metadata.DefaultMetaDataKey>
+      <org.mule.common.metadata.DefaultXmlMetaDataModel>
+        <dataType>XML</dataType>
+        <metaDataModelPropertiesManager>
+          <properties>
+            <org.mule.common.metadata.property.TextBasedExampleMetaDataModelProperty/>
+            <org.mule.common.metadata.property.xml.SchemaTypeMetaDataProperty/>
+            <org.mule.common.metadata.property.StructureIdentifierMetaDataModelProperty>
+              <metaDataKey class="org.mule.common.metadata.DefaultMetaDataKey" reference="../../../../../org.mule.common.metadata.DefaultMetaDataKey"/>
+              <derivedStructure>false</derivedStructure>
+              <generatedStructure>false</generatedStructure>
+            </org.mule.common.metadata.property.StructureIdentifierMetaDataModelProperty>
+          </properties>
+        </metaDataModelPropertiesManager>
+        <fields>
+          <org.mule.common.metadata.DefaultMetaDataField>
+            <name>ns0:employeeName</name>
+            <model class="org.mule.common.metadata.DefaultSimpleMetaDataModel">
+              <dataType>STRING</dataType>
+              <metaDataModelPropertiesManager>
+                <properties>
+                  <org.mule.common.metadata.property.xml.SchemaTypeMetaDataProperty>
+                    <typeQName reference="../../../../../../../../../entry[2]/org.mule.common.metadata.DefaultXmlMetaDataModel/fields/org.mule.common.metadata.DefaultMetaDataField/model/metaDataModelPropertiesManager/properties/org.mule.common.metadata.property.xml.SchemaTypeMetaDataProperty/typeQName"/>
+                  </org.mule.common.metadata.property.xml.SchemaTypeMetaDataProperty>
+                </properties>
+              </metaDataModelPropertiesManager>
+            </model>
+            <accessType>READ_WRITE</accessType>
+            <metaDataFieldPropertyManager>
+              <properties>
+                <org.mule.common.metadata.property.QNameMetaDataProperty>
+                  <name>
+                    <namespaceURI>http://sample.com/reservation/guest/types</namespaceURI>
+                    <localPart>employeeName</localPart>
+                    <prefix>ns0</prefix>
+                  </name>
+                </org.mule.common.metadata.property.QNameMetaDataProperty>
+              </properties>
+            </metaDataFieldPropertyManager>
+          </org.mule.common.metadata.DefaultMetaDataField>
+        </fields>
+        <rootElement>
+          <namespaceURI>http://sample.com/reservation/guest/types</namespaceURI>
+          <localPart>getEmployeeDetails</localPart>
+          <prefix>ns0</prefix>
+        </rootElement>
+        <schemas class="org.mule.common.metadata.StringBasedSchemaProvider">
+          <schemas>
+            <string>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;xs:schema xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:ax21=&quot;http://exception.reservation.sample.com/xsd&quot; xmlns:http=&quot;http://schemas.xmlsoap.org/wsdl/http/&quot; xmlns:mime=&quot;http://schemas.xmlsoap.org/wsdl/mime/&quot; xmlns:ns=&quot;http://sample.com/reservation/guest/types&quot; xmlns:ns1=&quot;http://org.apache.axis2/xsd&quot; xmlns:soap=&quot;http://schemas.xmlsoap.org/wsdl/soap/&quot; xmlns:soap12=&quot;http://schemas.xmlsoap.org/wsdl/soap12/&quot; xmlns:tns=&quot;http://sample.com/reservation/guest&quot; xmlns:wsaw=&quot;http://www.w3.org/2006/05/addressing/wsdl&quot; xmlns:wsdl=&quot;http://schemas.xmlsoap.org/wsdl/&quot; attributeFormDefault=&quot;qualified&quot; elementFormDefault=&quot;qualified&quot; targetNamespace=&quot;http://exception.reservation.sample.com/xsd&quot;&gt;&#xd;
+            &lt;xs:complexType name=&quot;EmployeeManagementException&quot;&gt;&#xd;
+                &lt;xs:sequence&gt;&#xd;
+                    &lt;xs:element minOccurs=&quot;0&quot; name=&quot;message&quot; nillable=&quot;true&quot; type=&quot;xs:string&quot;/&gt;&#xd;
+                &lt;/xs:sequence&gt;&#xd;
+            &lt;/xs:complexType&gt;&#xd;
+        &lt;/xs:schema&gt;</string>
+            <string>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;xs:schema xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:ax21=&quot;http://exception.reservation.sample.com/xsd&quot; xmlns:ax22=&quot;http://exception.reservation.sample.com/xsd&quot; xmlns:http=&quot;http://schemas.xmlsoap.org/wsdl/http/&quot; xmlns:mime=&quot;http://schemas.xmlsoap.org/wsdl/mime/&quot; xmlns:ns=&quot;http://sample.com/reservation/guest/types&quot; xmlns:ns1=&quot;http://org.apache.axis2/xsd&quot; xmlns:soap=&quot;http://schemas.xmlsoap.org/wsdl/soap/&quot; xmlns:soap12=&quot;http://schemas.xmlsoap.org/wsdl/soap12/&quot; xmlns:tns=&quot;http://sample.com/reservation/guest&quot; xmlns:wsaw=&quot;http://www.w3.org/2006/05/addressing/wsdl&quot; xmlns:wsdl=&quot;http://schemas.xmlsoap.org/wsdl/&quot; attributeFormDefault=&quot;qualified&quot; elementFormDefault=&quot;qualified&quot; targetNamespace=&quot;http://sample.com/reservation/guest/types&quot;&gt;&#xd;
+            &lt;xs:import namespace=&quot;http://exception.reservation.sample.com/xsd&quot;/&gt;&#xd;
+            &lt;xs:element name=&quot;EmployeeManagementServiceEmployeeManagementException&quot;&gt;&#xd;
+                &lt;xs:complexType&gt;&#xd;
+                    &lt;xs:sequence&gt;&#xd;
+                        &lt;xs:element minOccurs=&quot;0&quot; name=&quot;EmployeeManagementException&quot; nillable=&quot;true&quot; type=&quot;ax22:EmployeeManagementException&quot;/&gt;&#xd;
+                    &lt;/xs:sequence&gt;&#xd;
+                &lt;/xs:complexType&gt;&#xd;
+            &lt;/xs:element&gt;&#xd;
+            &lt;xs:element name=&quot;getEmployeeDetails&quot;&gt;&#xd;
+                &lt;xs:complexType&gt;&#xd;
+                    &lt;xs:sequence&gt;&#xd;
+                        &lt;xs:element minOccurs=&quot;0&quot; name=&quot;employeeName&quot; nillable=&quot;true&quot; type=&quot;xs:string&quot;/&gt;&#xd;
+                    &lt;/xs:sequence&gt;&#xd;
+                &lt;/xs:complexType&gt;&#xd;
+            &lt;/xs:element&gt;&#xd;
+            &lt;xs:element name=&quot;getEmployeeDetailsResponse&quot;&gt;&#xd;
+                &lt;xs:complexType&gt;&#xd;
+                    &lt;xs:sequence&gt;&#xd;
+                        &lt;xs:element minOccurs=&quot;0&quot; name=&quot;return&quot; nillable=&quot;true&quot; type=&quot;ns:Employee&quot;/&gt;&#xd;
+                    &lt;/xs:sequence&gt;&#xd;
+                &lt;/xs:complexType&gt;&#xd;
+            &lt;/xs:element&gt;&#xd;
+            &lt;xs:complexType name=&quot;Employee&quot;&gt;&#xd;
+                &lt;xs:sequence&gt;&#xd;
+                    &lt;xs:element minOccurs=&quot;0&quot; name=&quot;age&quot; type=&quot;xs:int&quot;/&gt;&#xd;
+                    &lt;xs:element minOccurs=&quot;0&quot; name=&quot;department&quot; nillable=&quot;true&quot; type=&quot;xs:string&quot;/&gt;&#xd;
+                    &lt;xs:element minOccurs=&quot;0&quot; name=&quot;id&quot; nillable=&quot;true&quot; type=&quot;xs:string&quot;/&gt;&#xd;
+                    &lt;xs:element minOccurs=&quot;0&quot; name=&quot;name&quot; nillable=&quot;true&quot; type=&quot;xs:string&quot;/&gt;&#xd;
+                &lt;/xs:sequence&gt;&#xd;
+            &lt;/xs:complexType&gt;&#xd;
+            &lt;xs:element name=&quot;deleteEmployee&quot;&gt;&#xd;
+                &lt;xs:complexType&gt;&#xd;
+                    &lt;xs:sequence&gt;&#xd;
+                        &lt;xs:element minOccurs=&quot;0&quot; name=&quot;employeeName&quot; nillable=&quot;true&quot; type=&quot;xs:string&quot;/&gt;&#xd;
+                    &lt;/xs:sequence&gt;&#xd;
+                &lt;/xs:complexType&gt;&#xd;
+            &lt;/xs:element&gt;&#xd;
+            &lt;xs:element name=&quot;addEmployee&quot;&gt;&#xd;
+                &lt;xs:complexType&gt;&#xd;
+                    &lt;xs:sequence&gt;&#xd;
+                        &lt;xs:element minOccurs=&quot;0&quot; name=&quot;name&quot; nillable=&quot;true&quot; type=&quot;xs:string&quot;/&gt;&#xd;
+                        &lt;xs:element minOccurs=&quot;0&quot; name=&quot;id&quot; nillable=&quot;true&quot; type=&quot;xs:string&quot;/&gt;&#xd;
+                        &lt;xs:element minOccurs=&quot;0&quot; name=&quot;Department&quot; nillable=&quot;true&quot; type=&quot;xs:string&quot;/&gt;&#xd;
+                        &lt;xs:element minOccurs=&quot;0&quot; name=&quot;age&quot; type=&quot;xs:int&quot;/&gt;&#xd;
+                    &lt;/xs:sequence&gt;&#xd;
+                &lt;/xs:complexType&gt;&#xd;
+            &lt;/xs:element&gt;&#xd;
+            &lt;xs:element name=&quot;addEmployeeResponse&quot;&gt;&#xd;
+                &lt;xs:complexType&gt;&#xd;
+                    &lt;xs:sequence&gt;&#xd;
+                        &lt;xs:element minOccurs=&quot;0&quot; name=&quot;return&quot; type=&quot;xs:boolean&quot;/&gt;&#xd;
+                    &lt;/xs:sequence&gt;&#xd;
+                &lt;/xs:complexType&gt;&#xd;
+            &lt;/xs:element&gt;&#xd;
+        &lt;/xs:schema&gt;</string>
+          </schemas>
+          <encoding reference="../../../../entry/org.mule.common.metadata.DefaultXmlMetaDataModel/schemas/encoding"/>
+          <baseUri>file:/C:/AnypointStudio/http:/localhost:8080/axis2/services/EmployeeManagementService%3Fwsdl</baseUri>
+        </schemas>
+        <namespaceManager>
+          <namespacePrefix class="tree-map">
+            <entry>
+              <string>http://sample.com/reservation/guest/types</string>
+              <string>ns0</string>
+            </entry>
+          </namespacePrefix>
+        </namespaceManager>
+      </org.mule.common.metadata.DefaultXmlMetaDataModel>
+    </entry>
+    <entry>
+      <org.mule.common.metadata.DefaultMetaDataKey>
+        <id>getEmployeeDetailsResponse</id>
+        <displayName>getEmployeeDetailsResponse</displayName>
+        <category>DEFAULT</category>
+        <metaDataKeyPropertiesManager>
+          <properties>
+            <org.mule.common.metadata.key.property.dsql.DsqlFromMetaDataKeyProperty/>
+          </properties>
+        </metaDataKeyPropertiesManager>
+      </org.mule.common.metadata.DefaultMetaDataKey>
+      <org.mule.common.metadata.DefaultXmlMetaDataModel>
+        <dataType>XML</dataType>
+        <metaDataModelPropertiesManager>
+          <properties>
+            <org.mule.common.metadata.property.TextBasedExampleMetaDataModelProperty/>
+            <org.mule.common.metadata.property.xml.SchemaTypeMetaDataProperty/>
+            <org.mule.common.metadata.property.StructureIdentifierMetaDataModelProperty>
+              <metaDataKey class="org.mule.common.metadata.DefaultMetaDataKey" reference="../../../../../org.mule.common.metadata.DefaultMetaDataKey"/>
+              <derivedStructure>false</derivedStructure>
+              <generatedStructure>false</generatedStructure>
+            </org.mule.common.metadata.property.StructureIdentifierMetaDataModelProperty>
+          </properties>
+        </metaDataModelPropertiesManager>
+        <fields>
+          <org.mule.common.metadata.DefaultMetaDataField>
+            <name>ns0:return</name>
+            <model class="org.mule.common.metadata.DefaultXmlMetaDataModel">
+              <dataType>XML</dataType>
+              <metaDataModelPropertiesManager>
+                <properties>
+                  <org.mule.common.metadata.property.xml.SchemaTypeMetaDataProperty>
+                    <typeQName>
+                      <namespaceURI>http://sample.com/reservation/guest/types</namespaceURI>
+                      <localPart>Employee</localPart>
+                      <prefix></prefix>
+                    </typeQName>
+                  </org.mule.common.metadata.property.xml.SchemaTypeMetaDataProperty>
+                </properties>
+              </metaDataModelPropertiesManager>
+              <fields>
+                <org.mule.common.metadata.DefaultMetaDataField>
+                  <name>ns0:age</name>
+                  <model class="org.mule.common.metadata.DefaultSimpleMetaDataModel">
+                    <dataType>INTEGER</dataType>
+                    <metaDataModelPropertiesManager>
+                      <properties>
+                        <org.mule.common.metadata.property.xml.SchemaTypeMetaDataProperty>
+                          <typeQName>
+                            <namespaceURI>http://www.w3.org/2001/XMLSchema</namespaceURI>
+                            <localPart>int</localPart>
+                            <prefix></prefix>
+                          </typeQName>
+                        </org.mule.common.metadata.property.xml.SchemaTypeMetaDataProperty>
+                      </properties>
+                    </metaDataModelPropertiesManager>
+                  </model>
+                  <accessType>READ_WRITE</accessType>
+                  <metaDataFieldPropertyManager>
+                    <properties>
+                      <org.mule.common.metadata.property.QNameMetaDataProperty>
+                        <name>
+                          <namespaceURI>http://sample.com/reservation/guest/types</namespaceURI>
+                          <localPart>age</localPart>
+                          <prefix>ns0</prefix>
+                        </name>
+                      </org.mule.common.metadata.property.QNameMetaDataProperty>
+                    </properties>
+                  </metaDataFieldPropertyManager>
+                </org.mule.common.metadata.DefaultMetaDataField>
+                <org.mule.common.metadata.DefaultMetaDataField>
+                  <name>ns0:department</name>
+                  <model class="org.mule.common.metadata.DefaultSimpleMetaDataModel">
+                    <dataType>STRING</dataType>
+                    <metaDataModelPropertiesManager>
+                      <properties>
+                        <org.mule.common.metadata.property.xml.SchemaTypeMetaDataProperty>
+                          <typeQName reference="../../../../../../../../../../../../entry[2]/org.mule.common.metadata.DefaultXmlMetaDataModel/fields/org.mule.common.metadata.DefaultMetaDataField/model/metaDataModelPropertiesManager/properties/org.mule.common.metadata.property.xml.SchemaTypeMetaDataProperty/typeQName"/>
+                        </org.mule.common.metadata.property.xml.SchemaTypeMetaDataProperty>
+                      </properties>
+                    </metaDataModelPropertiesManager>
+                  </model>
+                  <accessType>READ_WRITE</accessType>
+                  <metaDataFieldPropertyManager>
+                    <properties>
+                      <org.mule.common.metadata.property.QNameMetaDataProperty>
+                        <name>
+                          <namespaceURI>http://sample.com/reservation/guest/types</namespaceURI>
+                          <localPart>department</localPart>
+                          <prefix>ns0</prefix>
+                        </name>
+                      </org.mule.common.metadata.property.QNameMetaDataProperty>
+                    </properties>
+                  </metaDataFieldPropertyManager>
+                </org.mule.common.metadata.DefaultMetaDataField>
+                <org.mule.common.metadata.DefaultMetaDataField>
+                  <name>ns0:id</name>
+                  <model class="org.mule.common.metadata.DefaultSimpleMetaDataModel">
+                    <dataType>STRING</dataType>
+                    <metaDataModelPropertiesManager>
+                      <properties>
+                        <org.mule.common.metadata.property.xml.SchemaTypeMetaDataProperty>
+                          <typeQName reference="../../../../../../../../../../../../entry[2]/org.mule.common.metadata.DefaultXmlMetaDataModel/fields/org.mule.common.metadata.DefaultMetaDataField/model/metaDataModelPropertiesManager/properties/org.mule.common.metadata.property.xml.SchemaTypeMetaDataProperty/typeQName"/>
+                        </org.mule.common.metadata.property.xml.SchemaTypeMetaDataProperty>
+                      </properties>
+                    </metaDataModelPropertiesManager>
+                  </model>
+                  <accessType>READ_WRITE</accessType>
+                  <metaDataFieldPropertyManager>
+                    <properties>
+                      <org.mule.common.metadata.property.QNameMetaDataProperty>
+                        <name>
+                          <namespaceURI>http://sample.com/reservation/guest/types</namespaceURI>
+                          <localPart>id</localPart>
+                          <prefix>ns0</prefix>
+                        </name>
+                      </org.mule.common.metadata.property.QNameMetaDataProperty>
+                    </properties>
+                  </metaDataFieldPropertyManager>
+                </org.mule.common.metadata.DefaultMetaDataField>
+                <org.mule.common.metadata.DefaultMetaDataField>
+                  <name>ns0:name</name>
+                  <model class="org.mule.common.metadata.DefaultSimpleMetaDataModel">
+                    <dataType>STRING</dataType>
+                    <metaDataModelPropertiesManager>
+                      <properties>
+                        <org.mule.common.metadata.property.xml.SchemaTypeMetaDataProperty>
+                          <typeQName reference="../../../../../../../../../../../../entry[2]/org.mule.common.metadata.DefaultXmlMetaDataModel/fields/org.mule.common.metadata.DefaultMetaDataField/model/metaDataModelPropertiesManager/properties/org.mule.common.metadata.property.xml.SchemaTypeMetaDataProperty/typeQName"/>
+                        </org.mule.common.metadata.property.xml.SchemaTypeMetaDataProperty>
+                      </properties>
+                    </metaDataModelPropertiesManager>
+                  </model>
+                  <accessType>READ_WRITE</accessType>
+                  <metaDataFieldPropertyManager>
+                    <properties>
+                      <org.mule.common.metadata.property.QNameMetaDataProperty>
+                        <name>
+                          <namespaceURI>http://sample.com/reservation/guest/types</namespaceURI>
+                          <localPart>name</localPart>
+                          <prefix>ns0</prefix>
+                        </name>
+                      </org.mule.common.metadata.property.QNameMetaDataProperty>
+                    </properties>
+                  </metaDataFieldPropertyManager>
+                </org.mule.common.metadata.DefaultMetaDataField>
+              </fields>
+              <rootElement>
+                <namespaceURI>http://sample.com/reservation/guest/types</namespaceURI>
+                <localPart>getEmployeeDetailsResponse</localPart>
+                <prefix>ns0</prefix>
+              </rootElement>
+              <schemas class="org.mule.common.metadata.StringBasedSchemaProvider">
+                <schemas>
+                  <string>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;xs:schema xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:ax21=&quot;http://exception.reservation.sample.com/xsd&quot; xmlns:http=&quot;http://schemas.xmlsoap.org/wsdl/http/&quot; xmlns:mime=&quot;http://schemas.xmlsoap.org/wsdl/mime/&quot; xmlns:ns=&quot;http://sample.com/reservation/guest/types&quot; xmlns:ns1=&quot;http://org.apache.axis2/xsd&quot; xmlns:soap=&quot;http://schemas.xmlsoap.org/wsdl/soap/&quot; xmlns:soap12=&quot;http://schemas.xmlsoap.org/wsdl/soap12/&quot; xmlns:tns=&quot;http://sample.com/reservation/guest&quot; xmlns:wsaw=&quot;http://www.w3.org/2006/05/addressing/wsdl&quot; xmlns:wsdl=&quot;http://schemas.xmlsoap.org/wsdl/&quot; attributeFormDefault=&quot;qualified&quot; elementFormDefault=&quot;qualified&quot; targetNamespace=&quot;http://exception.reservation.sample.com/xsd&quot;&gt;&#xd;
+            &lt;xs:complexType name=&quot;EmployeeManagementException&quot;&gt;&#xd;
+                &lt;xs:sequence&gt;&#xd;
+                    &lt;xs:element minOccurs=&quot;0&quot; name=&quot;message&quot; nillable=&quot;true&quot; type=&quot;xs:string&quot;/&gt;&#xd;
+                &lt;/xs:sequence&gt;&#xd;
+            &lt;/xs:complexType&gt;&#xd;
+        &lt;/xs:schema&gt;</string>
+                  <string>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;xs:schema xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:ax21=&quot;http://exception.reservation.sample.com/xsd&quot; xmlns:ax22=&quot;http://exception.reservation.sample.com/xsd&quot; xmlns:http=&quot;http://schemas.xmlsoap.org/wsdl/http/&quot; xmlns:mime=&quot;http://schemas.xmlsoap.org/wsdl/mime/&quot; xmlns:ns=&quot;http://sample.com/reservation/guest/types&quot; xmlns:ns1=&quot;http://org.apache.axis2/xsd&quot; xmlns:soap=&quot;http://schemas.xmlsoap.org/wsdl/soap/&quot; xmlns:soap12=&quot;http://schemas.xmlsoap.org/wsdl/soap12/&quot; xmlns:tns=&quot;http://sample.com/reservation/guest&quot; xmlns:wsaw=&quot;http://www.w3.org/2006/05/addressing/wsdl&quot; xmlns:wsdl=&quot;http://schemas.xmlsoap.org/wsdl/&quot; attributeFormDefault=&quot;qualified&quot; elementFormDefault=&quot;qualified&quot; targetNamespace=&quot;http://sample.com/reservation/guest/types&quot;&gt;&#xd;
+            &lt;xs:import namespace=&quot;http://exception.reservation.sample.com/xsd&quot;/&gt;&#xd;
+            &lt;xs:element name=&quot;EmployeeManagementServiceEmployeeManagementException&quot;&gt;&#xd;
+                &lt;xs:complexType&gt;&#xd;
+                    &lt;xs:sequence&gt;&#xd;
+                        &lt;xs:element minOccurs=&quot;0&quot; name=&quot;EmployeeManagementException&quot; nillable=&quot;true&quot; type=&quot;ax22:EmployeeManagementException&quot;/&gt;&#xd;
+                    &lt;/xs:sequence&gt;&#xd;
+                &lt;/xs:complexType&gt;&#xd;
+            &lt;/xs:element&gt;&#xd;
+            &lt;xs:element name=&quot;getEmployeeDetails&quot;&gt;&#xd;
+                &lt;xs:complexType&gt;&#xd;
+                    &lt;xs:sequence&gt;&#xd;
+                        &lt;xs:element minOccurs=&quot;0&quot; name=&quot;employeeName&quot; nillable=&quot;true&quot; type=&quot;xs:string&quot;/&gt;&#xd;
+                    &lt;/xs:sequence&gt;&#xd;
+                &lt;/xs:complexType&gt;&#xd;
+            &lt;/xs:element&gt;&#xd;
+            &lt;xs:element name=&quot;getEmployeeDetailsResponse&quot;&gt;&#xd;
+                &lt;xs:complexType&gt;&#xd;
+                    &lt;xs:sequence&gt;&#xd;
+                        &lt;xs:element minOccurs=&quot;0&quot; name=&quot;return&quot; nillable=&quot;true&quot; type=&quot;ns:Employee&quot;/&gt;&#xd;
+                    &lt;/xs:sequence&gt;&#xd;
+                &lt;/xs:complexType&gt;&#xd;
+            &lt;/xs:element&gt;&#xd;
+            &lt;xs:complexType name=&quot;Employee&quot;&gt;&#xd;
+                &lt;xs:sequence&gt;&#xd;
+                    &lt;xs:element minOccurs=&quot;0&quot; name=&quot;age&quot; type=&quot;xs:int&quot;/&gt;&#xd;
+                    &lt;xs:element minOccurs=&quot;0&quot; name=&quot;department&quot; nillable=&quot;true&quot; type=&quot;xs:string&quot;/&gt;&#xd;
+                    &lt;xs:element minOccurs=&quot;0&quot; name=&quot;id&quot; nillable=&quot;true&quot; type=&quot;xs:string&quot;/&gt;&#xd;
+                    &lt;xs:element minOccurs=&quot;0&quot; name=&quot;name&quot; nillable=&quot;true&quot; type=&quot;xs:string&quot;/&gt;&#xd;
+                &lt;/xs:sequence&gt;&#xd;
+            &lt;/xs:complexType&gt;&#xd;
+            &lt;xs:element name=&quot;deleteEmployee&quot;&gt;&#xd;
+                &lt;xs:complexType&gt;&#xd;
+                    &lt;xs:sequence&gt;&#xd;
+                        &lt;xs:element minOccurs=&quot;0&quot; name=&quot;employeeName&quot; nillable=&quot;true&quot; type=&quot;xs:string&quot;/&gt;&#xd;
+                    &lt;/xs:sequence&gt;&#xd;
+                &lt;/xs:complexType&gt;&#xd;
+            &lt;/xs:element&gt;&#xd;
+            &lt;xs:element name=&quot;addEmployee&quot;&gt;&#xd;
+                &lt;xs:complexType&gt;&#xd;
+                    &lt;xs:sequence&gt;&#xd;
+                        &lt;xs:element minOccurs=&quot;0&quot; name=&quot;name&quot; nillable=&quot;true&quot; type=&quot;xs:string&quot;/&gt;&#xd;
+                        &lt;xs:element minOccurs=&quot;0&quot; name=&quot;id&quot; nillable=&quot;true&quot; type=&quot;xs:string&quot;/&gt;&#xd;
+                        &lt;xs:element minOccurs=&quot;0&quot; name=&quot;Department&quot; nillable=&quot;true&quot; type=&quot;xs:string&quot;/&gt;&#xd;
+                        &lt;xs:element minOccurs=&quot;0&quot; name=&quot;age&quot; type=&quot;xs:int&quot;/&gt;&#xd;
+                    &lt;/xs:sequence&gt;&#xd;
+                &lt;/xs:complexType&gt;&#xd;
+            &lt;/xs:element&gt;&#xd;
+            &lt;xs:element name=&quot;addEmployeeResponse&quot;&gt;&#xd;
+                &lt;xs:complexType&gt;&#xd;
+                    &lt;xs:sequence&gt;&#xd;
+                        &lt;xs:element minOccurs=&quot;0&quot; name=&quot;return&quot; type=&quot;xs:boolean&quot;/&gt;&#xd;
+                    &lt;/xs:sequence&gt;&#xd;
+                &lt;/xs:complexType&gt;&#xd;
+            &lt;/xs:element&gt;&#xd;
+        &lt;/xs:schema&gt;</string>
+                </schemas>
+                <encoding reference="../../../../../../../entry/org.mule.common.metadata.DefaultXmlMetaDataModel/schemas/encoding"/>
+                <baseUri>file:/C:/AnypointStudio/http:/localhost:8080/axis2/services/EmployeeManagementService%3Fwsdl</baseUri>
+              </schemas>
+              <namespaceManager>
+                <namespacePrefix class="tree-map">
+                  <entry>
+                    <string>http://sample.com/reservation/guest/types</string>
+                    <string>ns0</string>
+                  </entry>
+                </namespacePrefix>
+              </namespaceManager>
+            </model>
+            <accessType>READ_WRITE</accessType>
+            <metaDataFieldPropertyManager>
+              <properties>
+                <org.mule.common.metadata.property.QNameMetaDataProperty>
+                  <name>
+                    <namespaceURI>http://sample.com/reservation/guest/types</namespaceURI>
+                    <localPart>return</localPart>
+                    <prefix>ns0</prefix>
+                  </name>
+                </org.mule.common.metadata.property.QNameMetaDataProperty>
+              </properties>
+            </metaDataFieldPropertyManager>
+          </org.mule.common.metadata.DefaultMetaDataField>
+        </fields>
+        <rootElement>
+          <namespaceURI>http://sample.com/reservation/guest/types</namespaceURI>
+          <localPart>getEmployeeDetailsResponse</localPart>
+          <prefix>ns0</prefix>
+        </rootElement>
+        <schemas class="org.mule.common.metadata.StringBasedSchemaProvider">
+          <schemas reference="../../fields/org.mule.common.metadata.DefaultMetaDataField/model/schemas/schemas"/>
+          <encoding reference="../../../../entry/org.mule.common.metadata.DefaultXmlMetaDataModel/schemas/encoding"/>
+          <baseUri>file:/C:/AnypointStudio/http:/localhost:8080/axis2/services/EmployeeManagementService%3Fwsdl</baseUri>
+        </schemas>
+        <namespaceManager reference="../fields/org.mule.common.metadata.DefaultMetaDataField/model/namespaceManager"/>
+      </org.mule.common.metadata.DefaultXmlMetaDataModel>
+    </entry>
+  </types>
+  <connectorName>Web_Service_Consumer</connectorName>
+</metadata__catalog__entry>
