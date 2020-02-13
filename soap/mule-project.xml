@@ -3,3 +3,333 @@
     <name>SOAP</name>
     <description></description>
 </mule-project>
+#############
+
+
+This XML file does not appear to have any style information associated with it. The document tree is shown below.
+
+<mulexmlns:cluster="http://www.mulesoft.org/schema/mule/ee/cluster"xmlns:http="http://www.mulesoft.org/schema/mule/http"xmlns="http://www.mulesoft.org/schema/mule/core"xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"xmlns:spring="http://www.springframework.org/schema/beans"xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+
+<configuration defaultExceptionStrategy-ref="global-exceptionhandlerChoice_Exception_Strategy"doc:name="Configuration">
+
+<http:config useTransportForUris="false"/>
+
+</configuration>
+
+<choice-exception-strategy name="global-exceptionhandlerChoice_Exception_Strategy">
+
+<catch-exception-strategywhen="java.io.IOException"doc:name="java.io.IOException">
+
+<logger message="IO Exception" level="INFO"doc:name="Logger"/>
+
+</catch-exception-strategy>
+
+<catch-exception-strategy doc:name="Default Exception">
+
+<logger message="Default Exception"level="INFO" doc:name="Logger"/>
+
+</catch-exception-strategy>
+
+</choice-exception-strategy>
+
+</mule>
+
+###$$$$$$$$$$$$$$$$$$
+
+This XML file does not appear to have any style information associated with it. The document tree is shown below.
+
+<mulexmlns:apikit="http://www.mulesoft.org/schema/mule/apikit"xmlns:db="http://www.mulesoft.org/schema/mule/db"xmlns="http://www.mulesoft.org/schema/mule/core"xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"xmlns:spring="http://www.springframework.org/schema/beans"xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd http://www.mulesoft.org/schema/mule/db http://www.mulesoft.org/schema/mule/db/current/mule-db.xsd http://www.mulesoft.org/schema/mule/apikit http://www.mulesoft.org/schema/mule/apikit/current/mule-apikit.xsd http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd">
+
+<db:mysql-config name="MySQL_Configuration"host="abc" port="882" user="beens"password="abc" database="abc"doc:name="MySQL Configuration"/>
+
+<sub-flow name="Error_logs">
+
+<db:insert config-ref="MySQL_Configuration"doc:name="Logging Errors ">
+
+<db:parameterized-query>
+
+<![CDATA[
+
+INSERT INTO Table_Name(FLOW_NAME,TIMESTAMP,ERROR_MESSAGE,ERROR_DETAILS) VALUES (#[flow.name],#[server.dateTime.format('yyyy-MM-dd HH:mm:ss')],#[org.mule.util.ExceptionUtils.getRootCauseMessage(exception)],#[org.mule.util.ExceptionUtils.getFullStackTrace(exception)])
+
+]]>
+
+</db:parameterized-query>
+
+</db:insert>
+
+</sub-flow>
+
+<choice-exception-strategyname="GlobalChoiceExceptionStrategy">
+
+<catch-exception-strategy when="#[exception.causeMatches('java.sql.SQLException')]"doc:name="DataBaseConnectivity-Issues">
+
+<logger message="#[org.mule.util.ExceptionUtils.getRootCauseMessage(exception)]"level="INFO" doc:name="Logger"/>
+
+<set-property propertyName="Content-Type"value="application/json" doc:name="Json Response"/>
+
+<set-payload value="{ "message": "Database Connectivity Issue! " } "doc:name="Displaying Response"/>
+
+</catch-exception-strategy>
+
+<catch-exception-strategydoc:name="CatchAllExceptions">
+
+<set-property propertyName="http.status"value="500" doc:name="Property"/>
+
+<set-property propertyName="Content-Type"value="application/json" doc:name="Json Response"/>
+
+<set-payload value="{ "Exception": "#[org.mule.util.ExceptionUtils.getRootCauseMessage(exception)]" } " doc:name="Set Payload"/>
+
+<async doc:name="Async">
+
+<flow-ref name="Error_logs"doc:name="Inserting Logs in DB"/>
+
+</async>
+
+</catch-exception-strategy>
+
+</choice-exception-strategy>
+
+<choice-exception-strategyname="APIGlobalExceptionHandling-WithResponse">
+
+<catch-exception-strategy when="#[exception.causeMatches('org.mule.module.apikit.exception.UnsupportedMediaTypeException')]"doc:name="415-(UnsupportedMediaType)">
+
+<logger message="#[exception.cause.message]" level="ERROR"doc:name="Logger"/>
+
+<set-property propertyName="Content-Type"value="application/json" doc:name="Json Response"/>
+
+<set-payload value="{ "message": "Unsupported media type" }"doc:name="Displaying Response"/>
+
+<async doc:name="Async">
+
+<flow-ref name="Error_logs"doc:name="Inserting Logs in DB"/>
+
+</async>
+
+</catch-exception-strategy>
+
+<catch-exception-strategy when="#[exception.causeMatches('org.mule.module.apikit.exception.NotAcceptableException')]"doc:name="406-(NotAcceptable)">
+
+<logger message="#[exception.cause.message]" level="ERROR"doc:name="Logger"/>
+
+<set-property propertyName="Content-Type"value="application/json" doc:name="Json Response"/>
+
+<set-payload value="{ "message": "Not acceptable" }" doc:name="Displaying Response"/>
+
+<async doc:name="Async">
+
+<flow-ref name="Error_logs"doc:name="Inserting Logs in DB"/>
+
+</async>
+
+</catch-exception-strategy>
+
+<catch-exception-strategy when="#[exception.causeMatches('java.nio.channels.UnresolvedAddressException')]"doc:name="UnresolvedAddressException">
+
+<logger message="#[exception.cause.message]" level="ERROR"doc:name="Logger"/>
+
+<set-property propertyName="Content-Type"value="application/json" doc:name="Json Response"/>
+
+<set-payload value="{ "message": "Unresolved Exception" }"doc:name="Displaying Response"/>
+
+<async doc:name="Async">
+
+<flow-ref name="Error_logs"doc:name="Inserting Logs in DB"/>
+
+</async>
+
+</catch-exception-strategy>
+
+<catch-exception-strategy when="#[exception.causeMatches('org.springframework.security.authentication.BadCredentialsException')]"doc:name="401(Basic-Authentication)">
+
+<logger message="#[exception.cause.message]" level="ERROR"doc:name="Logger"/>
+
+<set-property propertyName="Content-Type"value="application/json" doc:name="Json Response"/>
+
+<set-payload value="{ "message": "Basic authentication failed" }"doc:name="Displaying Response"/>
+
+<async doc:name="Async">
+
+<flow-ref name="Error_logs"doc:name="Inserting Logs in DB"/>
+
+</async>
+
+</catch-exception-strategy>
+
+<catch-exception-strategy when="#[exception.causeMatches('org.mule.api.security.UnauthorisedException')]"doc:name="Authorization">
+
+<set-property propertyName="Content-Type"value="application/json" doc:name="Json Response"/>
+
+<set-payload value="{ "message": "No Authorization Found" }"doc:name="Displaying Response"/>
+
+<async doc:name="Async">
+
+<flow-ref name="Error_logs"doc:name="Inserting Logs in DB"/>
+
+</async>
+
+</catch-exception-strategy>
+
+<catch-exception-strategy when="#[exception.causeMatches('org.mule.module.apikit.exception.MethodNotAllowedException')]"doc:name="405-(MethodNotAllowed)">
+
+<logger message="#[exception.cause.message]" level="ERROR"doc:name="Logger"/>
+
+<set-property propertyName="Content-Type"value="application/json" doc:name="Json Response"/>
+
+<set-payload value="{ "message": "Method2 not allowed" }" doc:name="Displaying Response"/>
+
+<async doc:name="Async">
+
+<flow-ref name="Error_logs"doc:name="Inserting Logs in DB"/>
+
+</async>
+
+</catch-exception-strategy>
+
+<catch-exception-strategy when="#[exception.causeMatches('org.mule.module.apikit.exception.NotFoundException')]"doc:name="404(Not Found)">
+
+<logger message="#[exception.cause.message]" level="ERROR"doc:name="Logger"/>
+
+<set-property propertyName="Content-Type"value="application/json"doc:name="Copy_of_Json Response"/>
+
+<set-payload value="{ "message": "Resource not found" } " doc:name="Displaying Response"/>
+
+<async doc:name="Async">
+
+<flow-ref name="Error_logs"doc:name="Inserting Logs in DB"/>
+
+</async>
+
+</catch-exception-strategy>
+
+<catch-exception-strategy when="#[exception.causeMatches('java.sql.SQLException')]"doc:name="DataBaseConnectivity-Issues">
+
+<logger message="@1234#[org.mule.util.ExceptionUtils.getRootCauseMessage(exception)]"level="INFO" doc:name="Logger"/>
+
+<set-property propertyName="Content-Type"value="application/json" doc:name="Json Response"/>
+
+<set-payload value="{ "message": "Database Connectivity Issue! " } "doc:name="Displaying Response"/>
+
+</catch-exception-strategy>
+
+<catch-exception-strategy when="#[exception.causeMatches('org.mule.api.MessagingException')]"doc:name="MessagingException">
+
+<logger message="#[exception.cause.message]" level="ERROR"doc:name="Logger"/>
+
+<set-property propertyName="Content-Type"value="application/json" doc:name="Json Response"/>
+
+<set-payload value="{ "message": "Bad Request" }" doc:name="Displaying Response"/>
+
+<async doc:name="Async">
+
+<flow-ref name="Error_logs"doc:name="Inserting Logs in DB"/>
+
+</async>
+
+</catch-exception-strategy>
+
+<catch-exception-strategydoc:name="ALL_Remaining">
+
+<set-property propertyName="http.status"value="500" doc:name="Property"/>
+
+<set-property propertyName="Content-Type"value="application/json" doc:name="Json Response"/>
+
+<set-payload value="{ "message": "An error occured while processing your request" } "doc:name="Set Payload"/>
+
+<async doc:name="Async">
+
+<flow-ref name="Error_logs"doc:name="Inserting Logs in DB"/>
+
+</async>
+
+</catch-exception-strategy>
+
+</choice-exception-strategy>
+
+<apikit:mapping-exception-strategyname="Mutual-apiKitGlobalExceptionMapping">
+
+<apikit:mapping statusCode="404">
+
+<apikit:exceptionvalue="org.mule.module.apikit.exception.NotFoundException"/>
+
+<set-property propertyName="Content-Type"value="application/json"doc:name="Property"/>
+
+<set-payload value="{ "message": "Resource not found" }" doc:name="Set Payload"/>
+
+<async doc:name="Async">
+
+<flow-ref name="Error_logs"doc:name="Inserting Logs in DB"/>
+
+</async>
+
+</apikit:mapping>
+
+<apikit:mapping statusCode="405">
+
+<apikit:exceptionvalue="org.mule.module.apikit.exception.MethodNotAllowedException"/>
+
+<set-property propertyName="Content-Type"value="application/json"doc:name="Property"/>
+
+<set-payload value="{ "message": "Method not allowed" }" doc:name="Set Payload"/>
+
+<async doc:name="Async">
+
+<flow-ref name="Error_logs"doc:name="Inserting Logs in DB"/>
+
+</async>
+
+</apikit:mapping>
+
+<apikit:mapping statusCode="415">
+
+<apikit:exceptionvalue="org.mule.module.apikit.exception.UnsupportedMediaTypeException"/>
+
+<set-property propertyName="Content-Type"value="application/json"doc:name="Property"/>
+
+<set-payload value="{ "message": "Unsupported media type" }" doc:name="Set Payload"/>
+
+<async doc:name="Async">
+
+<flow-ref name="Error_logs"doc:name="Inserting Logs in DB"/>
+
+</async>
+
+</apikit:mapping>
+
+<apikit:mapping statusCode="406">
+
+<apikit:exceptionvalue="org.mule.module.apikit.exception.NotAcceptableException"/>
+
+<set-property propertyName="Content-Type"value="application/json"doc:name="Property"/>
+
+<set-payload value="{ "message": "Not acceptable" }" doc:name="Set Payload"/>
+
+<async doc:name="Async">
+
+<flow-ref name="Error_logs"doc:name="Inserting Logs in DB"/>
+
+</async>
+
+</apikit:mapping>
+
+<apikit:mapping statusCode="400">
+
+<apikit:exceptionvalue="org.mule.module.apikit.exception.BadRequestException"/>
+
+<set-property propertyName="Content-Type"value="application/json"doc:name="Property"/>
+
+<set-payload value="{ "message": "Bad request" }" doc:name="Set Payload"/>
+
+<async doc:name="Async">
+
+<flow-ref name="Error_logs"doc:name="Inserting Logs in DB"/>
+
+</async>
+
+</apikit:mapping>
+
+</apikit:mapping-exception-strategy>
+
+</mule>
+
+
