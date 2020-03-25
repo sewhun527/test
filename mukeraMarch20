@@ -111,7 +111,7 @@ public class UnzipTransformer extends AbstractMessageAwareTransformer {
 	}
 }
 
-===============================================
+================================================
 <?xml version="1.0" encoding="UTF-8"?>
 
 <mule xmlns:vm="http://www.mulesoft.org/schema/mule/vm"
@@ -254,6 +254,270 @@ http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/cor
 <!--      Send the raw file to iShare2 using ConnectDirect, update the status -->
 
 </mule>
+
+
+
+=================ooooxml
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:vm="http://www.mulesoft.org/schema/mule/vm"
+	xmlns:file="http://www.mulesoft.org/schema/mule/file"
+	xmlns:scripting="http://www.mulesoft.org/schema/mule/scripting"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:spring="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.mulesoft.org/schema/mule/vm http://www.mulesoft.org/schema/mule/vm/current/mule-vm.xsd
+http://www.mulesoft.org/schema/mule/file http://www.mulesoft.org/schema/mule/file/current/mule-file.xsd
+http://www.mulesoft.org/schema/mule/scripting http://www.mulesoft.org/schema/mule/scripting/current/mule-scripting.xsd
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd
+http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd">
+
+
+<file:connector name="sfg_unzip_input_file" outputPattern="#[message.inboundProperties.originalFilename].#[message.id]" autoDelete="true" streaming="true" validateConnections="true" fileAge="5000" doc:name="Input File"/>
+    <file:connector name="sfg_unzip_output_file" streaming="true" validateConnections="true" fileAge="5000" doc:name="Output File"/>
+
+    <vm:connector name="sfg.unzip.step2.queue" doc:name="Step2 VM" queueTimeout="100000" validateConnections="true">
+        <vm:queue-profile>
+        </vm:queue-profile>
+    </vm:connector>
+    <vm:connector name="sfg.unzip.step3.queue" doc:name="Step3 VM" validateConnections="true"/>
+  
+    <vm:connector name="sfg.common.status.queue" validateConnections="true" doc:name="VM"/>
+    <vm:connector name="sfg.common.transfer.queue" validateConnections="true" doc:name="VM"/>
+    <file:connector name="File" autoDelete="true" streaming="true" validateConnections="true" doc:name="File"/>
+    
+   
+
+    <!-- Wait for the file, take a backup, send the message details to the queue and update the status -->
+    <flow name="sfg_unzip_step1_flow">
+		<file:inbound-endpoint path="${sfg_unzip_step1_inbox_live}" moveToPattern="#[message.inboundProperties.originalFilename].#[message.id]" moveToDirectory="${sfg_unzip_step1_inbox_backup}" connector-ref="sfg_unzip_input_file" responseTimeout="10000" doc:name="File"/>
+        <set-session-variable variableName="originalFilename" value="#[message.inboundProperties.originalFilename]" doc:name="Store Filename"/>
+        <set-session-variable variableName="id" value="#[message.id]" doc:name="Store ID"/>
+        <set-session-variable variableName="stagingName" value="#[message.inboundProperties.originalFilename].#[message.id]" doc:name="stagingName"/>
+        <file:outbound-endpoint path="${sfg_unzip_step1_inbox_backup}" outputPattern="#[message.inboundProperties.originalFilename].#[message.id]" connector-ref="File" responseTimeout="10000" doc:name="Output for staging"/>
+        <set-property propertyName="stagingName" value="#[message.inboundProperties.originalFilename].#[message.id]" doc:name="Store Staging name"/>
+        <vm:outbound-endpoint exchange-pattern="one-way" path="sfg.unzip.step2.queue" connector-ref="sfg.unzip.step2.queue" doc:name="Send to Step 2 queue"/>
+
+        <set-property propertyName="status_step" value="sfg_unzip_step1" doc:name="Status Step"/>
+        <set-property propertyName="status_value" value="1" doc:name="Status Value"/>
+        <set-property propertyName="status_xfer_id" value="#[message.id]" doc:name="Status XFER ID"/>
+        <vm:outbound-endpoint exchange-pattern="one-way" path="sfg.common.status.queue" connector-ref="sfg.common.status.queue" doc:name="Update status"/>
+
+        <set-property propertyName="xfer_status" value="0" doc:name="Transfer Step"/>
+        <set-property propertyName="origName" value="#[message.inboundProperties.originalFilename]" doc:name="Status Value"/>
+        <set-property propertyName="xfer_id" value="#[message.id]" doc:name="Status XFER ID"/>
+        <vm:outbound-endpoint exchange-pattern="one-way" path="sfg.common.transfer.queue" connector-ref="sfg.common.transfer.queue" doc:name="Add transfer"/>
+        <exception-strategy ref="unzip_exception_handlerCatch_Exception_Strategy-for-sfg_unzip_step1_flow" doc:name="Reference Exception Strategy"/>
+    </flow>
+
+    <!-- Unzip the file using Java, stage for iShare, update the status  -->
+    <flow name="sfg_unzip_step2_flow">
+        <vm:inbound-endpoint exchange-pattern="one-way" path="sfg.unzip.step2.queue" connector-ref="sfg.unzip.step2.queue" doc:name="zip Files"/>
+
+        <set-variable variableName="stagingPath" value="${sfg_unzip_step1_inbox_backup}" doc:name="stagingPath Variable"/>
+        <set-variable variableName="stagingName" value="#[message.inboundProperties.stagingName]" doc:name="stagingName Variable"/>
+        <scripting:transformer doc:name="Get file inputstream">
+            <scripting:script engine="Groovy"><![CDATA[
+            String stagingPath = message.getInvocationProperty('stagingPath')
+            String folderPath = stagingPath + File.separator;
+            String fileName = message.getInvocationProperty('stagingName');
+            File file = new File(folderPath, fileName)
+            try {
+              payload = file.newInputStream()
+            } catch(Exception e) {
+              throw e;
+            }
+          ]]></scripting:script>
+        </scripting:transformer>
+           <custom-transformer class="finalunzip.UnzipTransformer" doc:name="Java"/>
+        <vm:outbound-endpoint exchange-pattern="one-way" path="sfg.unzip.step3.queue" connector-ref="sfg.unzip.step3.queue" doc:name="Send to Step 3 queue"/>
+
+        <set-property propertyName="status_step" value="sfg_unzip_step2" doc:name="Status Step"/>
+        <set-property propertyName="status_value" value="1" doc:name="Status Value"/>
+        <set-property propertyName="status_xfer_id" value="#[message.id]" doc:name="Status XFER ID"/>
+        <vm:outbound-endpoint exchange-pattern="one-way" path="sfg.common.status.queue" connector-ref="sfg.common.status.queue" doc:name="Update status"/>
+        <exception-strategy ref="unzip_exception_handlerCatch_Exception_Strategy-for-sfg_unzip_step2_flow" doc:name="Reference Exception Strategy"/>
+    </flow>
+
+    <!--  Send the raw file to iShare1 using ConnectDirect, update the status -->
+    
+        <flow name="sfg_unzip_step3_flow">
+        <vm:inbound-endpoint exchange-pattern="one-way" path="sfg.unzip.step3.queue" connector-ref="sfg.unzip.step3.queue" doc:name="Send to  xxx yyy"/>
+
+        <set-variable variableName="cdScript" value="${MULE_HOME}/resources/cd_file.sh" doc:name="CDP Variable"/>
+        <set-variable variableName="stagingPath" value="${sfg_unzip_step2_outbox_live}" doc:name="stagingPath Variable"/>
+        <set-variable variableName="stagingName" value="#[message.inboundProperties.stagingName]" doc:name="stagingName Variable"/>
+        <set-variable variableName="destName" value="#[message.inboundProperties.filename]" doc:name="destName Variable"/>
+        <set-variable variableName="sfg_unzip_step3_ndmscript" value="${sfg_unzip_step3_ndmscript}" doc:name="CDP Script"/>
+        <scripting:transformer doc:name="Execute NDM script">
+           <scripting:script engine="Groovy"><![CDATA[
+             def fileName = message.getInvocationProperty('stagingPath') + message.getInvocationProperty('stagingName')
+             def destName = message.getInvocationProperty('destName')
+             def runScript = message.getInvocationProperty('cdScript') + " " + message.getInvocationProperty('sfg_unzip_step3_ndmscript') + " &SFILE=" + fileName + " &DFILE=" + destName
+             def stdout = new StringBuilder()
+             def stderr = new StringBuilder()
+             def cmd = runScript.execute()
+             cmd.waitForProcessOutput(stdout, stderr)
+             flowVars.sfg_unzip_step3_ndmstdout = stdout.toString()
+             flowVars.sfg_unzip_step3_ndmstderr = stderr.toString()
+             flowVars.sfg_unzip_step3_ndmexitcode = cmd.exitValue()
+           ]]></scripting:script>
+         </scripting:transformer>
+         <choice doc:name="Choice">
+           <when expression="#[flowVars.sfg_unzip_step3_ndmexitcode == 0]">
+             <set-property propertyName="status_step" value="sfg_unzip_step3" doc:name="Status Step"/>
+             <set-property propertyName="status_value" value="1" doc:name="Status Value"/>
+             <set-property propertyName="status_xfer_id" value="#[message.id]" doc:name="Status XFER ID"/>
+             <vm:outbound-endpoint exchange-pattern="one-way" path="sfg.common.status.queue" connector-ref="sfg.common.status.queue" doc:name="Update OK status"/>
+
+             <set-property propertyName="xfer_status" value="1" doc:name="Transfer Step"/>
+             <set-property propertyName="finalName" value="#[flowVars.destName]" doc:name="File name"/>
+             <set-property propertyName="dstServer" value="" doc:name="Destination server"/>
+             <set-property propertyName="xfer_id" value="#[message.id]" doc:name="XFER ID"/>
+             <vm:outbound-endpoint exchange-pattern="one-way" path="sfg.common.transfer.queue" connector-ref="sfg.common.transfer.queue" doc:name="Add transfer"/>
+           </when>
+           <otherwise>
+             <set-property propertyName="status_step" value="sfg_unzip_step3" doc:name="Status Step"/>
+             <set-property propertyName="status_value" value="0" doc:name="Status Value"/>
+             <set-property propertyName="status_xfer_id" value="#[message.id]" doc:name="Status XFER ID"/>
+             <vm:outbound-endpoint exchange-pattern="one-way" path="sfg.common.status.queue" connector-ref="sfg.common.status.queue" doc:name="Update FAIL status"/>
+           </otherwise>
+        </choice>
+        <exception-strategy ref="unzip_exception_handlerCatch_Exception_Strategy-for-sfg_unzip_step3_flow" doc:name="Reference Exception Strategy"/>
+        
+        
+    </flow>
+
+    <!--  Send the raw file to iShare2 using ConnectDirect, update the status -->
+
+</mule>
+======================java
+
+package finalunzip;
+
+import java.io.BufferedInputStream;
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipInputStream;
+
+import org.mule.api.MuleMessage;
+import org.mule.api.transformer.TransformerException;
+import org.mule.config.i18n.MessageFactory;
+import org.mule.routing.filters.WildcardFilter;
+import org.mule.transformer.AbstractMessageAwareTransformer;
+import org.mule.transport.file.FileConnector;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+
+@SuppressWarnings("deprecation")
+public class UnzipTransformer extends AbstractMessageAwareTransformer {
+
+	private static final Logger log = LoggerFactory.getLogger(UnzipTransformer.class);
+
+	private WildcardFilter filter = new WildcardFilter("*");
+	
+	private final Properties configProp = new Properties();
+	
+	String op;
+	
+	public UnzipTransformer() {
+		loadProperties();
+		op = getProperty("sfg_unzip_step1_inbox_output");
+	    registerSourceType(InputStream.class);
+	    registerSourceType(byte[].class);
+	    setReturnClass(InputStream.class);	    
+	}
+
+	public void loadProperties() {
+	      InputStream in = this.getClass().getClassLoader().getResourceAsStream("mule-app.properties");
+	      System.out.println("Read all properties from file");
+	      try {
+	          configProp.load(in);
+	      } catch (IOException e) {
+	          e.printStackTrace();
+	      }
+	}
+	public void setFilenamePattern(String pattern) {
+		filter.setPattern(pattern);
+	}
+	
+	public String getProperty(String key){
+	      return configProp.getProperty(key);
+	   }
+
+	public String getFilenamePattern() {
+		return filter.getPattern();
+	}
+	
+	@Override
+	public Object transform(MuleMessage message, String encoding) throws TransformerException {
+		Object payload = message.getPayload();
+		InputStream is = null;
+		if (payload instanceof InputStream) {
+			is = (InputStream)payload;
+
+		} else if (payload instanceof byte[]) {
+			is = new ByteArrayInputStream((byte[]) payload);
+
+		} else {
+			throw new RuntimeException("Unknown payload type: " + payload.getClass().getName());
+		}
+
+		ZipInputStream zis = new ZipInputStream(is);
+		ZipEntry entry = null;
+		InputStream result = null;
+		try {
+			while ((entry = zis.getNextEntry()) != null) {
+				String name = entry.getName();
+				if (entry.isDirectory()) {
+					log.debug("skip folder " + name);
+					continue;
+				}
+				if (!filter.accept(name)) {
+					log.debug("skip file " + name + " did not match filename pattern: " + filter.getPattern());
+					continue;
+				}
+
+				int lastDirSep = name.lastIndexOf('/');
+				if (lastDirSep != -1) {
+					log.debug("unzip strips zip-folderpath " + name.substring(0, lastDirSep));
+					name = name.substring(lastDirSep + 1);
+				}
+				if (log.isDebugEnabled()) {
+					Object oldname = message.getProperty(FileConnector.PROPERTY_ORIGINAL_FILENAME);
+					log.debug("unzip replaces original filename " + oldname + " with " + name);
+				}
+				message.setProperty(FileConnector.PROPERTY_ORIGINAL_FILENAME, name);
+				
+				result = new BufferedInputStream(zis);
+				byte[] buffer = new byte[result.available()];
+				
+				File targetFile = new File(op+"\\"+name+message.getUniqueId().toString());
+				FileOutputStream outStream = new FileOutputStream(targetFile);
+				int len;
+                while ((len = zis.read(buffer)) > 0) {
+                outStream.write(buffer, 0, len);
+                }
+			  
+			}
+		} catch (IOException ioException) {
+			throw new TransformerException(MessageFactory.createStaticMessage("Failed to uncompress file."), this, ioException);
+		}
+		
+		return result;
+	}
+}
+
+
+
 
 
 
